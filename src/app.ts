@@ -1,4 +1,11 @@
-const userName = "Max";
+class Departement {
+  name: string;
 
+  constructor(n: string) {
+    this.name = n;
+  }
+}
 
-console.log(userName);
+const accounting = new Departement("Accounting");
+
+console.log(accounting);
