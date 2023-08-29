@@ -8,9 +8,6 @@ class Department {
     static createEmployee(name) {
         return { name: name };
     }
-    describe() {
-        console.log(`Department (${this.id}): ${this.name}`);
-    }
     addEmployee(employee) {
         this.employees.push(employee);
     }
@@ -19,11 +16,14 @@ class Department {
         console.log(this.employees);
     }
 }
-Department.fiscalyear = 2020;
+Department.fiscalYear = 2020;
 class ITDepartment extends Department {
     constructor(id, admins) {
         super(id, "IT");
         this.admins = admins;
+    }
+    describe() {
+        console.log("IT Department - ID: " + this.id);
     }
 }
 class AccountingDepartment extends Department {
@@ -44,6 +44,9 @@ class AccountingDepartment extends Department {
         this.reports = reports;
         this.lastReport = reports[0];
     }
+    describe() {
+        console.log("Accounting Department - ID: " + this.id);
+    }
     addEmployee(name) {
         if (name === "Max") {
             return;
@@ -59,7 +62,7 @@ class AccountingDepartment extends Department {
     }
 }
 const employee1 = Department.createEmployee("Max");
-console.log(employee1, Department.fiscalyear);
+console.log(employee1, Department.fiscalYear);
 const it = new ITDepartment("d1", ["Max"]);
 it.addEmployee("Max");
 it.addEmployee("Manu");
@@ -73,5 +76,4 @@ accounting.addReport("Something went wrong...");
 console.log(accounting.mostRecentReport);
 accounting.addEmployee("Max");
 accounting.addEmployee("Manu");
-accounting.printReports();
-accounting.printEmployeeInformation();
+accounting.describe();
